@@ -3,7 +3,7 @@
 import css from "./NoteList.module.css";
 import type { Note } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteNotes } from "@/lib/api";
+import { deleteNote } from "@/lib/api";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export default function NoteList({ notes }: NoteListProps) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const mutation = useMutation({
-    mutationFn: (id: string) => deleteNotes(id),
+    mutationFn: (id: string) => deleteNote(id),
     onMutate: (id: string) => setDeletingId(id),
     onSettled: () => setDeletingId(null),
     onSuccess: () => {

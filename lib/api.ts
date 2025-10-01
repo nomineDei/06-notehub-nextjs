@@ -18,7 +18,7 @@ export interface NotesResponse {
 
 export interface FetchNotesParams {
   search?: string;
-  tag?: string;
+  tag?: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
   page?: number;
   perPage?: number;
   sortBy?: "created" | "updated";
@@ -27,7 +27,7 @@ export interface FetchNotesParams {
 export interface CreateNoteParams {
   title: string;
   content: string;
-  tag: string;
+  tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
 }
 
 export async function fetchNotes(
@@ -38,18 +38,18 @@ export async function fetchNotes(
   return res.data;
 }
 
-export async function createNotes(noteData: CreateNoteParams): Promise<Note> {
+export async function createNote(noteData: CreateNoteParams): Promise<Note> {
   const res = await api.post<Note>("/notes", noteData);
 
   return res.data;
 }
 
-export const deleteNotes = async (id: string): Promise<Note> => {
+export const deleteNote = async (id: string): Promise<Note> => {
   const res = await api.delete<Note>(`/notes/${id}`);
   return res.data;
 };
 
-export const fetchNotesById = async (id: string): Promise<Note> => {
+export const fetchNoteById = async (id: string): Promise<Note> => {
   const res = await api.get<Note>(`/notes/${id}`);
 
   return res.data;

@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import css from "./NodeDetails.module.css";
 import { useQuery } from "@tanstack/react-query";
-import { fetchNotesById } from "@/lib/api";
+import { fetchNoteById } from "@/lib/api";
 
 function NoteDetails() {
   const params = useParams();
@@ -13,8 +13,9 @@ function NoteDetails() {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["note", noteId],
-    queryFn: () => fetchNotesById(noteId),
+    queryFn: () => fetchNoteById(noteId),
     enabled: !!noteId,
+    refetchOnMount: false,
   });
 
   if (isError || !data) return <p>Something went wrong.</p>;
