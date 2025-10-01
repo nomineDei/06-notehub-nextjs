@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import TanstackProvider from "@/components/TanStackProvider/TanstackProvider";
+import TanStackProvider from "@/components/TanStackProvider/TanstackProvider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
@@ -18,11 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TanstackProvider>
+        <TanStackProvider>
           <Header />
           {children}
           <Footer />
-        </TanstackProvider>
+        </TanStackProvider>
       </body>
     </html>
   );
